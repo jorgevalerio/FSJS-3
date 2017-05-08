@@ -48,6 +48,7 @@ function titleOther(){
 
 
 
+
 function displayColor(){
 colorsJsPuns.style.display = "block";
 
@@ -56,15 +57,25 @@ colorsJsPuns.style.display = "block";
 		colorSelect += '<option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option> ';
 		colorSelect += '<option value="gold">Gold (JS Puns shirt only)</option> ';
 		color.innerHTML = colorSelect;
-	} else {
+	} else if (design.value=== 'heart js'){
 		let colorSelect = '<option value="tomato">Tomato (I &#9829; JS shirt only)</option>';
 		colorSelect += '<option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>  ';
 		colorSelect += '<option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>';
 		color.innerHTML = colorSelect;
 		
-	}
+	} else if (design.value === 'Select Theme'){
+		
+		
+		let colorSelect = '<option value="tomato"><-- Select an option please</option>';
+		
+		color.innerHTML = colorSelect;
 	
-} 
+	
+	
+} else{}
+
+
+}
 
 
 let div = document.createElement('div');
@@ -207,10 +218,46 @@ for (let activitiesIndex = 0 ; activitiesIndex < activities.length ; activitiesI
 
 	
 }
+
+/////// Payment Secition
+var paymentMethod = document.getElementById('payment');
+var paymentfieldset = document.querySelectorAll('fieldset');
+var divspaymentfieldset = paymentfieldset[3].querySelectorAll('div');
+var creditCard = divspaymentfieldset[0];
+var paypal = divspaymentfieldset[4];
+var bitcoin = divspaymentfieldset[5];
+
+console.log(paymentfieldset);
+console.log(divspaymentfieldset);
 	
-	
+function paypalBitcoint(){
+paypal.style.display = "none";
+bitcoin.style.display = "none";
+}
+
+paypalBitcoint();
+
+console.log(paymentMethod.value);
 
 
+paymentMethod.addEventListener("change", payments);
 
-
-
+function payments(){
+	if(paymentMethod.value === 'paypal'){
+		
+		paypal.style.display = "";
+		creditCard.style.display = "none";
+		bitcoin.style.display = "none";
+	}
+	else if(paymentMethod.value === 'bitcoin'){
+		
+		bitcoin.style.display = "";
+		paypal.style.display = "none";
+		creditCard.style.display = "none";
+	}
+	else{
+		creditCard.style.display = "";
+		paypal.style.display = "none";
+bitcoin.style.display = "none";
+	}
+}
