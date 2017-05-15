@@ -2,6 +2,7 @@
 // Global variables
 
 const nameField = document.getElementById('name');
+const emailField = document.getElementById('mail');
 const titleField = document.getElementById('title');
 const jobother = document.getElementById('jobother');
 const design = document.getElementById('design');
@@ -9,7 +10,7 @@ const colorsJsPuns = document.getElementById('colors-js-puns') ;
 const colorOptions = document.getElementById('color');
 const activities = document.querySelector(".activities").children;
 
-let mainConference = activities[1].firstChild;
+	let mainConference = activities[1].firstChild;
 	let jsFrameworks = activities[2].firstChild;
 	let jsLibs = activities[3].firstChild;
 	let express = activities[4].firstChild;
@@ -21,6 +22,7 @@ let mainConference = activities[1].firstChild;
 titleField.addEventListener("click", titleOther);
 design.addEventListener("change", displayColor);
 
+jobother.style.display = "none";
 
 
 // Functions
@@ -227,8 +229,8 @@ var creditCard = divspaymentfieldset[0];
 var paypal = divspaymentfieldset[4];
 var bitcoin = divspaymentfieldset[5];
 
-console.log(paymentfieldset);
-console.log(divspaymentfieldset);
+/*console.log(paymentfieldset);
+console.log(divspaymentfieldset);*/
 	
 function paypalBitcoint(){
 paypal.style.display = "none";
@@ -237,7 +239,7 @@ bitcoin.style.display = "none";
 
 paypalBitcoint();
 
-console.log(paymentMethod.value);
+
 
 
 paymentMethod.addEventListener("change", payments);
@@ -261,3 +263,115 @@ function payments(){
 bitcoin.style.display = "none";
 	}
 }
+
+var cvv = document.getElementById('cvv');
+var ccNum = document.getElementById('cc-num');
+var zipNum = document.getElementById('zip');
+
+
+
+var form = document.querySelector('form');
+var emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+
+
+let errorDisplay2 = document.querySelector('legend');
+let newErrorDiv = document.createElement('div');
+newErrorDiv.id = "errorBox";
+
+errorDisplay2.appendChild(newErrorDiv);
+
+
+
+
+form.addEventListener('submit', function(e){
+	
+	let errorDisplay = document.getElementById('errorBox');
+	errorDisplay.innerHTML="";
+	
+	
+	
+	if(nameField.value === ""){
+		console.log("name fied is empty");
+		let errorWrapper = document.createElement("li");         
+		let nameError = document.createTextNode("Please Enter your Name"); 
+		
+		errorWrapper.appendChild(nameError);
+		errorDisplay.appendChild(errorWrapper);
+		e.preventDefault();
+	}
+	
+	 if (!emailFilter.test(emailField.value)) {
+        let errorWrapper = document.createElement("li");
+		 let nameError = document.createTextNode("Please enter a valid e-mail address.");         
+		errorWrapper.appendChild(nameError);
+		errorDisplay.appendChild(errorWrapper);
+       e.preventDefault();
+    } 
+	
+	
+	
+	
+	
+	if(paymentMethod.value === "credit card" || paymentMethod.value === "select_method"){
+		
+		if (cvv.value.length <= 2 || cvv.value.length >= 4 ||/^[0-9]+$/.test(cvv.value) === false) {
+			console.log('Please enter a valid CVV Number');
+			
+			let errorWrapper = document.createElement("li");
+		 let nameError = document.createTextNode("Please enter a valid CVV Number");         
+		errorWrapper.appendChild(nameError);
+		errorDisplay.appendChild(errorWrapper);
+			 e.preventDefault();
+			
+		}
+		
+		if (zipNum.value.length <= 4 || zipNum.value.length >= 6 ||/^[0-9]+$/.test(zipNum.value) === false) {
+			console.log('Please enter a valid zip Number');
+			
+			let errorWrapper = document.createElement("li");
+		 let nameError = document.createTextNode("Please enter a valid ZIP Number.");         
+		errorWrapper.appendChild(nameError);
+		errorDisplay.appendChild(errorWrapper);
+			 e.preventDefault();
+			
+			
+		}
+		if (ccNum.value.length <= 12 || ccNum.value.length >= 17 ||/^[0-9]+$/.test(ccNum.value) === false) {
+			console.log('Please enter a valid CC Number');
+			
+			let errorWrapper = document.createElement("li");
+		 let nameError = document.createTextNode("Please enter a valid CC address.");         
+		errorWrapper.appendChild(nameError);
+		errorDisplay.appendChild(errorWrapper);
+			
+			 e.preventDefault();
+			
+		}
+		
+		
+	}
+	
+	
+	if (mainConference.checked || jsFrameworks.checked || jsLibs.checked || express.checked || node.checked || buildTools.checked || npm.checked){
+		return true;
+	} else{
+		console.log('please check at least 1');
+		
+		let errorWrapper = document.createElement("li");
+		 let nameError = document.createTextNode("Please Choose at least 1 Activity");         
+		errorWrapper.appendChild(nameError);
+		errorDisplay.appendChild(errorWrapper);
+		
+		 e.preventDefault();
+	}
+	
+	
+	
+	
+	
+});
+
+
+
+
+
