@@ -170,6 +170,7 @@ let emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
 let errorDisplay2 = document.querySelector('legend');
 let newErrorDiv = document.createElement('div');
 newErrorDiv.id = "errorBox";
+newErrorDiv.style.color= "red";
 errorDisplay2.appendChild(newErrorDiv);
 
 form.addEventListener('submit', function(e){
