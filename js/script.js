@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	let text = document.createTextNode('Total: $0');
 	div.appendChild(text);
 	document.querySelector(".activities").appendChild(div);
+	colorsJsPuns.style.display = 'none';
 });
 
 // Event Listeners 
@@ -176,11 +177,12 @@ errorDisplay2.appendChild(newErrorDiv);
 form.addEventListener('submit', function(e){
 	let errorDisplay = document.getElementById('errorBox');
 	errorDisplay.innerHTML="";
-	if(nameField.value === ""){
+	if(nameField.value === "" || /\s/.test(nameField.value)){
 		let errorWrapper = document.createElement("li");         
 		let nameError = document.createTextNode("Please Enter your Name"); 
 		errorWrapper.appendChild(nameError);
 		errorDisplay.appendChild(errorWrapper);
+		scrollTo(document.body, 0, 100);
 		e.preventDefault();
 	}
 	
@@ -189,6 +191,7 @@ form.addEventListener('submit', function(e){
 		 let nameError = document.createTextNode("Please enter a valid e-mail address.");         
 		errorWrapper.appendChild(nameError);
 		errorDisplay.appendChild(errorWrapper);
+		 scrollTo(document.body, 0, 100);
        e.preventDefault();
     } 
 	if(paymentMethod.value === "credit card" || paymentMethod.value === "select_method"){
@@ -197,6 +200,7 @@ form.addEventListener('submit', function(e){
 		 let nameError = document.createTextNode("Please enter a valid CVV Number");         
 		errorWrapper.appendChild(nameError);
 		errorDisplay.appendChild(errorWrapper);
+		scrollTo(document.body, 0, 100);
 		e.preventDefault();
 		}
 		if (zipNum.value.length <= 4 || zipNum.value.length >= 6 ||/^[0-9]+$/.test(zipNum.value) === false) {
@@ -204,6 +208,7 @@ form.addEventListener('submit', function(e){
 		 let nameError = document.createTextNode("Please enter a valid ZIP Number.");         
 		errorWrapper.appendChild(nameError);
 		errorDisplay.appendChild(errorWrapper);
+			 scrollTo(document.body, 0, 100);
 		e.preventDefault();
 		}
 		if (ccNum.value.length <= 12 || ccNum.value.length >= 17 ||/^[0-9]+$/.test(ccNum.value) === false) {
@@ -211,6 +216,7 @@ form.addEventListener('submit', function(e){
 		 let nameError = document.createTextNode("Please enter a valid CC address.");         
 		errorWrapper.appendChild(nameError);
 		errorDisplay.appendChild(errorWrapper);
+		scrollTo(document.body, 0, 100);
 		e.preventDefault();
 		}
 	}
@@ -220,7 +226,8 @@ form.addEventListener('submit', function(e){
 		let errorWrapper = document.createElement("li");
 		 let nameError = document.createTextNode("Please Choose at least 1 Activity");         
 		errorWrapper.appendChild(nameError);
-		errorDisplay.appendChild(errorWrapper);	
+		errorDisplay.appendChild(errorWrapper);
+		 scrollTo(document.body, 0, 100);
 		 e.preventDefault();
 	}
 	
